@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_recogniion.c                                  :+:      :+:    :+:   */
+/*   line_recognition.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:57:46 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/22 19:22:05 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/23 20:05:04 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_room	*is_room_name(t_room *lst, char *s)
 		return (NULL);
 	while (lst)
 	{
-		if (ft_strncmp(s, lst->name, ft_strlen(lst->name) - 1) == 0)
+		if (ft_strcmp(s, lst->name) == 0)
 			return (lst);
 		lst = lst->next;
 	}
@@ -46,51 +46,38 @@ int		is_room_ok(char *s, t_room *lst)
 {
 	char	**cut_string;
 	int		i;
-	int		ret;
 
-	ret = 0;
 	cut_string = ft_strsplit(s, ' ');
-	if (is_room_name(lst, cut_string[0]))
-		ret = 1;
+	if (is_room_name(lst, cut_string[0]) || !cut_string[1])
+		return (free_tab(cut_string));
 	i = -1;
-	while (cut_string[1] && cut_string[1][++i])
+	while (cut_string[1][++i])
 		if (!ft_isdigit(cut_string[1][i]))
-			ret = 1;
+			return (free_tab(cut_string));
 	i = -1;
-	while (cut_string[2] && cut_string[2][++i])
+	if (!cut_string[2])
+		return (free_tab(cut_string));
+	while (cut_string[2][++i])
 		if (!ft_isdigit(cut_string[2][i]))
-			ret = 1;
+			return (free_tab(cut_string));
 	if (cut_string[3])
-		ret = 1;
+		return (free_tab(cut_string));
 	free_tab(cut_string);
-	return (ret);
+	return (1);
 }
 
 int		get_line_job(char *s, t_room *lst)
 {
-	int i;
-
 	if (!s)
 		return (0);
 	if (s[0] == '#' && s[1] == '#')
 		return (1);
 	if (s[0] == '#' && s[1] != '#')
 		return (2);
-	if (ft_isalphanum(s[0]))
-	{
-		i = 0;
-		while (ft_isalphanum(s[i]))
-			i++;
-		if (is_room_name(lst, s))
-		{
-			if (s[i] == '-')
-				if (is_room_name(lst, &(s[i + 1])))
-					return (3);
-		}
-		else
-			if (is_room_ok(s, lst))
-				return (4);
-	}
+	if (is_room_ok(s, lst))
+		return (3);
+	if (is_link_ok(s, lst))
+		return (4);
 	return (0);
 }
 
@@ -111,9 +98,15 @@ t_room	*manage_input(char **tab, t_room *lst)
 			start_end = (!ft_strncmp(tab[i], "##end\0", 6)) ? 2 : start_end;
 		}
 		if (j == 3)
-			new_room(tab[i], &lst);
+		{
+			new_room(tab[i], &lst, start_end);
+			start_end = 0;
+		}
 		if (j == 4)
-			new_link(tab[i], &lst); 
+			new_link(tab[i], &lst);
+		if (j == 0)
+			return (lst);
+		i++;
 	}
 	return (lst);
 }

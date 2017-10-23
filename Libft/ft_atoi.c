@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 17:08:40 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/20 17:10:15 by lgaveria         ###   ########.fr       */
+/*   Created: 2016/11/10 18:16:59 by lgaveria          #+#    #+#             */
+/*   Updated: 2017/10/23 16:09:59 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcy(char *dest, char *src)
+int		ft_atoi(char *str)
 {
-	int	i;
+	int i;
+	int signe;
+	int nb;
 
-	i = -1;
-	if (!dest || !src)
-		return (NULL);
-	while (src[++i])
-		dest[i] = src[i];
-	dest[i] = '\0';
-	return (dest);
+	i = 0;
+	signe = 1;
+	nb = 0;
+	while (ft_iswhitespace(str[i]))
+		i += 1;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			signe = -1;
+		i += 1;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		nb = nb * 10 + (str[i] - '0');
+		i += 1;
+	}
+	return (signe * nb);
 }

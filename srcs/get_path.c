@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 18:16:59 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/22 17:45:20 by lgaveria         ###   ########.fr       */
+/*   Created: 2017/10/23 19:34:10 by lgaveria          #+#    #+#             */
+/*   Updated: 2017/10/23 20:04:57 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_atoi(const char *str)
+t_room		*get_path(t_room *lst, t_room *previous_path)
 {
-	int i;
-	int signe;
-	int nb;
-
-	i = 0;
-	signe = 1;
-	nb = 0;
-	while (ft_iswhitespace(str[i]))
-		i += 1;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			signe = -1;
-		i += 1;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		nb = nb * 10 + (str[i] - '0');
-		i += 1;
-	}
-	return (signe * nb);
+	while (
 }

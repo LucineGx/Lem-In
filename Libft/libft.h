@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:00:24 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/22 17:45:33 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:22:50 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h> //
 
 char	*ft_strjoinfree(char *s1, char *s2, int f);
 char	*ft_strdup(char *s);

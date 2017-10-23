@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:54:32 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/20 17:01:28 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/23 17:23:42 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strjoinfree(char *s1, char *s2, int f)
 	char *ret;
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	if (s1 == NULL || s2 || NULL)
+	if (s1 == NULL || s2 == NULL)
 		ret = (s1 == NULL) ? ft_strdup(s2) : ft_strdup(s1);
 	else
 	{
