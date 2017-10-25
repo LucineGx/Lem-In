@@ -33,14 +33,14 @@ char		*simple_gnl_from_si(void)
 	return (ret);
 }
 
-void		new_room(char *s, t_room **lst, int start_end)
+t_room		*new_room(char *s, t_room **lst, int start_end)
 {
 	t_room	*tmp;
 	t_room	*new;
 	int		i;
 
 	if (!s)
-		return;
+		return (NULL);
 	new = malloc(sizeof(t_room));
 	i = 0;
 	while (s[i] && ft_isalphanum(s[i]))
@@ -58,6 +58,7 @@ void		new_room(char *s, t_room **lst, int start_end)
 			tmp = tmp->next;
 		tmp->next = new;
 	}
+	return (*lst);
 }
 
 void		new_link(char *s, t_room **lst)

@@ -26,7 +26,7 @@ typedef struct	s_room
 }				t_room;
 
 t_room			*manage_input(char **input, t_room *lst);
-void			new_room(char *s, t_room **lst, int start_end);
+t_room			*new_room(char *s, t_room **lst, int start_end);
 void			new_link(char *s, t_room **lst);
 t_room			*is_room_name(t_room *lst, char *s);
 int				free_tab(char **tab);
