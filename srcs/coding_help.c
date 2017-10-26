@@ -21,3 +21,14 @@ void		display_rooms(t_room *lst)
 		lst = lst->next;
 	}
 }
+
+void		display_path(t_room *lst)
+{
+	printf("START\n");
+	while (lst)
+	{
+		printf("\t%s\n", lst->name);
+		lst = lst->next;
+	}
+	printf("END\n");
+}

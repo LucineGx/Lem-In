@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:04:17 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/23 19:30:25 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/26 19:08:08 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,18 @@ void	free_lst(t_room *lst)
 	lst->name = NULL;
 	free(lst);
 	lst = NULL;
+}
+
+void	remove_last_room(t_room **lst)
+{
+	t_room	*tmp;
+
+	if (!lst || !(*lst))
+		return ;
+	tmp = *lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	printf("ICI: %s\n", tmp->name);
+	display_rooms(*lst);
+	free_lst(tmp);
 }

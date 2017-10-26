@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:47:39 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/23 20:05:01 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/26 18:57:10 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ t_room		*new_room(char *s, t_room **lst, int start_end)
 void		new_link(char *s, t_room **lst)
 {
 	char	**linked;
-	t_room	*tmp;
+	t_room	*tmp1;
+	t_room	*tmp2;
 
 	linked = ft_strsplit(s, '-');
-	tmp = is_room_name(*lst, linked[0]);
-	new_room(linked[1], &(tmp->link), 0);
-	tmp = is_room_name(*lst, linked[1]);
-	new_room(linked[0], &(tmp->link), 0);
+	tmp1 = get_room(*lst, linked[0]);
+	tmp2 = get_room(*lst, linked[1]);
+	new_room(linked[1], &(tmp1->link), tmp2->start_end);
+	new_room(linked[0], &(tmp2->link), tmp1->start_end);
 	free_tab(linked);
 }
 
@@ -94,9 +95,11 @@ int			main(void)
 	}
 	rooms = NULL;
 	rooms = manage_input(input, rooms);
-	display_tab(input);
+	if (rooms)
+		get_start(rooms, input, ft_atoi(input[0]));
+	else
+		write(1, "ERROR\n", 6);
 	free_tab(input);
-	display_rooms(rooms);//
 	free_lst(rooms);
 	return(0);
 }

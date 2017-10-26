@@ -6,7 +6,7 @@
 #    By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/23 16:08:33 by lgaveria          #+#    #+#              #
-#    Updated: 2017/10/23 19:24:03 by lgaveria         ###   ########.fr        #
+#    Updated: 2017/10/26 17:08:28 by lgaveria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = lem_in
 SRCS = cleanup_functions.c \
 	   lem_in.c \
 	   line_recognition.c \
+	   get_path.c \
 	   coding_help.c \
 
 LIBFT = Libft/libft.a

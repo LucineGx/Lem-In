@@ -6,13 +6,13 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:57:46 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/23 20:05:04 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/26 18:52:32 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room	*is_room_name(t_room *lst, char *s)
+t_room	*get_room(t_room *lst, char *s)
 {
 	if (!lst || !s)
 		return (NULL);
@@ -32,9 +32,9 @@ int		is_link_ok(char *s, t_room *lst)
 
 	cut_string = ft_strsplit(s, '-');
 	ret = 1;
-	if (!is_room_name(lst, cut_string[0]))
+	if (!get_room(lst, cut_string[0]))
 		ret = 0;
-	if (!is_room_name(lst, cut_string[1]))
+	if (!get_room(lst, cut_string[1]))
 		ret = 0;
 	if (cut_string[2])
 		ret = 0;
@@ -48,7 +48,7 @@ int		is_room_ok(char *s, t_room *lst)
 	int		i;
 
 	cut_string = ft_strsplit(s, ' ');
-	if (is_room_name(lst, cut_string[0]) || !cut_string[1])
+	if (get_room(lst, cut_string[0]) || !cut_string[1])
 		return (free_tab(cut_string));
 	i = -1;
 	while (cut_string[1][++i])
@@ -68,10 +68,22 @@ int		is_room_ok(char *s, t_room *lst)
 
 int		get_line_job(char *s, t_room *lst)
 {
+	int	i;
+
 	if (!s)
 		return (0);
-	if (s[0] == '#' && s[1] == '#')
-		return (1);
+	if (ft_atoi(s))
+	{
+		i = 0;
+		while (s[i] && ft_isdigit(s[i]))
+			i++;
+		if (!s[i])
+			return (1);
+	}
+	if (!ft_strcmp(s, "##start"))
+		return (5);
+	if (!ft_strcmp(s, "##end"))
+		return (6);
 	if (s[0] == '#' && s[1] != '#')
 		return (2);
 	if (is_room_ok(s, lst))
@@ -86,17 +98,17 @@ t_room	*manage_input(char **tab, t_room *lst)
 	int	i;
 	int	j;
 	int	start_end;
+	int	ants;
 
-	i = 0;
+	i = -1;
 	start_end = 0;
-	while (tab[i])
+	ants = 0;
+	while (tab[++i])
 	{
+		ants = (j == 1 && i == 0) ? ft_atoi(tab[i]) : ants;
 		j = get_line_job(tab[i], lst);
-		if (j == 1)
-		{
-			start_end = (!ft_strncmp(tab[i], "##start\0", 8)) ? 1 : start_end;
-			start_end = (!ft_strncmp(tab[i], "##end\0", 6)) ? 2 : start_end;
-		}
+		start_end = (j == 5) ? 1 : start_end;
+		start_end = (j == 6) ? 2 : start_end;
 		if (j == 3)
 		{
 			new_room(tab[i], &lst, start_end);
@@ -106,7 +118,6 @@ t_room	*manage_input(char **tab, t_room *lst)
 			new_link(tab[i], &lst);
 		if (j == 0)
 			return (lst);
-		i++;
 	}
 	return (lst);
 }
