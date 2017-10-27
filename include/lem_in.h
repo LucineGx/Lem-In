@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:52:25 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/26 18:47:13 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/27 19:11:52 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_room
 {
 	char			*name;
 	int				start_end;
+	int				ant;
 	struct s_room	*link;
 	struct s_room	*next;
 }				t_room;
@@ -35,7 +36,7 @@ char			**add_line_to_tab(char **tab);
 void			remove_last_room(t_room **lst);
 void			get_start(t_room *lst, char **input, int ants);
 void			display_tab(char **tab);
-void			solve_lem_in(t_room *path);
+void			solve_lem_in(t_room *path, int ants_nb);
 //TO DELETE
 void			display_rooms(t_room *lst);
 void			display_path(t_room *lst);

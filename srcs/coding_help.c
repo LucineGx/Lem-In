@@ -1,4 +1,4 @@
-#include "lem_in.h"
+#include "../include/lem_in.h"
 #include <stdio.h>
 
 void		display_rooms(t_room *lst)

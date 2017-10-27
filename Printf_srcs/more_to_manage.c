@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncmp.c                                          :+:      :+:    :+:   */
+/*   more_to_manage.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 16:22:59 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 15:59:07 by lgaveria         ###   ########.fr       */
+/*   Created: 2017/10/16 19:19:46 by lgaveria          #+#    #+#             */
+/*   Updated: 2017/10/27 15:54:37 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-int		ft_strcmp(char *s1, char *s2)
+void	manage_z(t_convlst **opt, int z)
 {
-	int		i;
-
-	i = 0;
-	while (s2[i])
+	if ((*opt)->prec >= 0 && ft_strlen((*opt)->str) >= (*opt)->prec)
+		z = 0;
+	if (((*opt)->str)[0] == '-' && ft_isdigit(((*opt)->str)[1]) && z)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		((*opt)->str)[0] = '0';
+		(*opt)->str = joinfree("-", (*opt)->str, 2);
 	}
-	if (!(s1[i]))
-		return(0);
 	else
-		return (s1[i] - s2[i]);
-}
-
-int		ft_strncmp(char *s1, char *s2, int n)
-{
-	if (ft_strlen(s1) < n || ft_strlen(s2) < n)
-		return (ft_strcmp(s1, s2));
-	else
-		return (ft_strcmp(ft_strsub(s1, 0, n), ft_strsub(s2, 0, n)));
+		(*opt)->str = joinfree((z) ? ("0") : (" "), (*opt)->str, 2);
 }

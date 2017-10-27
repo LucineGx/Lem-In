@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncmp.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 16:22:59 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 15:59:07 by lgaveria         ###   ########.fr       */
+/*   Created: 2016/11/10 11:41:16 by lgaveria          #+#    #+#             */
+/*   Updated: 2017/10/27 15:49:55 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-int		ft_strcmp(char *s1, char *s2)
+char	*ft_strdup_void(void *s, t_convlst *opt)
 {
+	char	**tmp;
+	char	*src;
+	char	*dest;
 	int		i;
 
+	(void)opt;
+	tmp = (char**)s;
+	src = *tmp;
+	if (!src)
+		return (NULL);
+	if ((dest = malloc(sizeof(char) * ft_strlen(src) + 1)) == 0)
+		return (NULL);
 	i = 0;
-	while (s2[i])
+	while (src[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
+		dest[i] = src[i];
+		i += 1;
 	}
-	if (!(s1[i]))
-		return(0);
-	else
-		return (s1[i] - s2[i]);
-}
-
-int		ft_strncmp(char *s1, char *s2, int n)
-{
-	if (ft_strlen(s1) < n || ft_strlen(s2) < n)
-		return (ft_strcmp(s1, s2));
-	else
-		return (ft_strcmp(ft_strsub(s1, 0, n), ft_strsub(s2, 0, n)));
+	dest[i] = '\0';
+	return (dest);
 }

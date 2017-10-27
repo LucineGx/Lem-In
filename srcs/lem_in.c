@@ -6,11 +6,11 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:47:39 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/26 18:57:10 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/27 16:03:40 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 char		*simple_gnl_from_si(void)
 {
@@ -45,8 +45,9 @@ t_room		*new_room(char *s, t_room **lst, int start_end)
 	i = 0;
 	while (s[i] && ft_isalphanum(s[i]))
 		i++;
-	new->name = ft_strsub(s, 0, i);
+	new->name = ft_strsub_free(s, 0, i, 0);
 	new->start_end = start_end;
+	new->ant = 0;
 	new->link = NULL;
 	new->next = NULL;
 	tmp = *lst;

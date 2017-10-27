@@ -6,11 +6,11 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:04:17 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/26 19:08:08 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/27 18:59:33 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "../include/lem_in.h"
 
 int		free_tab(char **tab)
 {
@@ -72,14 +72,17 @@ void	display_tab(char **tab)
 
 void	free_lst(t_room *lst)
 {
-	if (lst->next)
-		free_lst(lst->next);
-	if (lst->link)
-		free_lst(lst->link);
-	free(lst->name);
-	lst->name = NULL;
-	free(lst);
-	lst = NULL;
+	if (lst)
+	{
+		if (lst->next)
+			free_lst(lst->next);
+		if (lst->link)
+			free_lst(lst->link);
+		free(lst->name);
+		lst->name = NULL;
+		free(lst);
+		lst = NULL;
+	}
 }
 
 void	remove_last_room(t_room **lst)
@@ -89,9 +92,8 @@ void	remove_last_room(t_room **lst)
 	if (!lst || !(*lst))
 		return ;
 	tmp = *lst;
-	while (tmp->next != NULL)
+	while ((tmp->next)->next != NULL)
 		tmp = tmp->next;
-	printf("ICI: %s\n", tmp->name);
-	display_rooms(*lst);
-	free_lst(tmp);
+	free_lst(tmp->next);
+	tmp->next = NULL;
 }

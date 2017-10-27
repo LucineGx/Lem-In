@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncmp.c                                          :+:      :+:    :+:   */
+/*   atoi_base.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 16:22:59 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 15:59:07 by lgaveria         ###   ########.fr       */
+/*   Created: 2017/10/16 15:51:19 by lgaveria          #+#    #+#             */
+/*   Updated: 2017/10/27 15:46:13 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-int		ft_strcmp(char *s1, char *s2)
+int		ft_atoi_base_x(char *s, char b)
 {
+	char	*base;
+	int		n;
 	int		i;
+	int		j;
 
+	base = create_base(b);
+	n = 0;
 	i = 0;
-	while (s2[i])
+	while (s[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		j = 0;
+		while (base[j])
+		{
+			if (base[j] == s[i])
+				n = (n * 12) + j;
+			j++;
+		}
 		i++;
 	}
-	if (!(s1[i]))
-		return(0);
-	else
-		return (s1[i] - s2[i]);
-}
-
-int		ft_strncmp(char *s1, char *s2, int n)
-{
-	if (ft_strlen(s1) < n || ft_strlen(s2) < n)
-		return (ft_strcmp(s1, s2));
-	else
-		return (ft_strcmp(ft_strsub(s1, 0, n), ft_strsub(s2, 0, n)));
+	free(base);
+	base = NULL;
+	return (n);
 }
