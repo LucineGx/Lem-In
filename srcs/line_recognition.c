@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:57:46 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/26 18:52:32 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:08:07 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ t_room	*manage_input(char **tab, t_room *lst)
 	ants = 0;
 	while (tab[++i])
 	{
-		ants = (j == 1 && i == 0) ? ft_atoi(tab[i]) : ants;
 		j = get_line_job(tab[i], lst);
+		ants = (j == 1 && i == 0) ? ft_atoi(tab[i]) : ants;
 		start_end = (j == 5) ? 1 : start_end;
 		start_end = (j == 6) ? 2 : start_end;
 		if (j == 3)

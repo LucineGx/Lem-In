@@ -6,13 +6,13 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:54:32 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/23 17:23:42 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 16:01:41 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoinfree(char *s1, char *s2, int f)
+char	*joinfree(char *s1, char *s2, int f)
 {
 	char *ret;
 	if (s1 == NULL && s2 == NULL)

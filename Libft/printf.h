@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 17:27:58 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 19:06:55 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 15:59:05 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <inttypes.h>
 # include <limits.h>
-# include "../Libft/libft.h"
+# include "libft.h"
 # define LCHAR 1
 # define LSINT 2
 # define LLLINT 3

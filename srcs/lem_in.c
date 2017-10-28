@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:47:39 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 16:03:40 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 17:30:07 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char		*simple_gnl_from_si(void)
 	ret = NULL;
 	while (buf[0] && buf[0] != '\n')
 	{
-		ret = ft_strjoinfree(ret, buf, 1);
+		ret = joinfree(ret, buf, 1);
 		buf[0] = '\0';
 		read(0, buf, 1);
 	}

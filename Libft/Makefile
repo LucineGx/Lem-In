@@ -6,7 +6,7 @@
 #    By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/23 18:32:45 by lgaveria          #+#    #+#              #
-#    Updated: 2017/10/23 19:30:03 by lgaveria         ###   ########.fr        #
+#    Updated: 2017/10/28 16:06:54 by lgaveria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,30 @@ SRCS = ft_atoi.c \
 	   ft_strsplit.c \
 	   ft_strsub.c \
 	   ft_strsplit.c \
-	   charactere_recognition.c
+	   charactere_recognition.c \
+	   atoi_basex.c \
+	   convert_base.c \
+	   convert_base_char.c \
+	   convert_base_intmax_t.c \
+	   convert_base_long.c \
+	   convert_base_longlong.c \
+	   convert_base_short.c \
+	   convert_base_size_t.c \
+	   end.c \
+	   ft_itoa.c \
+	   ft_itoa_char.c \
+	   ft_itoa_intmaxt.c \
+	   ft_itoa_long.c \
+	   ft_itoa_longlong.c \
+	   ft_itoa_short.c \
+	   ft_itoa_sizet.c \
+	   ft_putchar.c \
+	   ft_strdup.c \
+	   get_str_to_print.c \
+	   manage_int.c \
+	   more_to_manage.c \
+	   pars_string.c \
+	   printf.c \
 
 OBJS = $(SRCS:.c=.o)
 

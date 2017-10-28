@@ -6,57 +6,53 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 19:34:10 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 19:18:16 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:08:24 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		move(char *room_name, char ***ants, int n, int ants_nb)
+t_room		**move(t_room *path, t_room **ants, int n, int ants_nb)
 {
-	if (!n)
+	int		i;
+
+	i = 0;
+	if (n == -1)
 	{
-		while (n < ants_nb)
-			(*ants)[n++] = ft_strdup(room_name);
-		(*ants)[n] = NULL;
+		while (i < ants_nb)
+			ants[i++] = path;
+		ants[i] = NULL;
 	}
 	else
-	{
-		free((*ants)[n]);
-		(*ants)[n] = ft_strdup(room_name);
-	}
+		ants[n] = (ants[n])->next;
+	return (ants);
 }
 
 void		solve_lem_in(t_room *path, int nb)
 {
-	 char		**ant;
-	 t_room		*last;
-	 int		i;
+	t_room	**ants;
+	int		i;
 
-	 last = path;
-	 while (last->next != NULL)
-		 last = last->next;
-	 if (!(ant = malloc(sizeof(char*) * (nb + 1))))
-		 return ;
-	 move(path->name, &(ant), 0, nb);
-	 while (ft_strcmp(ant[nb - 1], last->name))
-	 {
-		 i = 0;
-		 write(1, "\n", 1);
-		 while(ant[i])
-		 {
-			 if (ft_strcmp(ant[i], last->name))
-			 {
-				 move(((get_room(path, ant[i]))->next)->name, &(ant), i, nb);
-				 ft_printf("L%d-%s ", i + 1, ant[i]);
-				 if (ant[i + 1] && ft_strcmp(ant[i],
-							 ((get_room(path, ant[i + 1]))->next)->name))
-					 i = nb - 1;
-			 }
-			 i++;
-		 }
-	 }
-	 free_tab(ant);
+	if (!(ants = malloc(sizeof(t_room*) * nb)))
+		return ;
+	ants = move(path, ants, -1, nb);
+	while ((ants[nb - 1])->next != NULL)
+	{
+		i = 0;
+		write(1, "\n", 1);
+		while (i < nb)
+		{
+			if ((ants[i])->next != NULL)
+			{
+				ants = move(path, ants, i, nb);
+				printf("L%d-%s ", i + 1, (ants[i])->name);
+				if (!(ft_strcmp((ants[i])->name, (path->next)->name)))
+					i = nb - 1;
+			}
+			i++;
+		}
+	}
+	free(ants);
 }
 
 t_room		*get_path(t_room *full, t_room *lst, t_room *path)
@@ -97,6 +93,7 @@ void		get_start(t_room *lst, char **input, int ants)
 	{
 		display_tab(input);
 		solve_lem_in(path, ants);
+		free_lst(path);
 	}
 	else
 		write(1, "ERROR\n", 6);

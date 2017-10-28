@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:00:24 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 19:05:51 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:07:43 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define LIBFT_H
 # include <unistd.h>
 # include <stdlib.h>
-# include "../Printf_srcs/printf.h"
+# include "printf.h"
 # include <stdio.h> //
 
-char	*ft_strjoinfree(char *s1, char *s2, int f);
+char	*joinfree(char *s1, char *s2, int f);
 char	*ft_strdup(char *s);
 int		ft_strlen(char *s);
 char	*ft_strcat(char *dest, char *src);

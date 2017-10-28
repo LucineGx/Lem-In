@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 16:22:59 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 15:59:07 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:07:48 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int		ft_strcmp(char *s1, char *s2)
 	int		i;
 
 	i = 0;
+	if (!s1 && !s2)
+		return (0);
+	if (!s1 || !s2)
+		return ((!s1) ? s2[i] : s1[i]);
 	while (s2[i])
 	{
 		if (s1[i] != s2[i])

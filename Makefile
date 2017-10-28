@@ -6,7 +6,7 @@
 #    By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/23 16:08:33 by lgaveria          #+#    #+#              #
-#    Updated: 2017/10/27 19:18:21 by lgaveria         ###   ########.fr        #
+#    Updated: 2017/10/28 15:56:19 by lgaveria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,6 @@ LIBFT = Libft/libft.a
 
 LIB = -L Libft/ -lft
 
-PRINT = -L Printf_srcs/ -lft
-
 SRC = $(addprefix srcs/, $(SRCS))
 
 OBJS = $(SRC:.c=.o)
@@ -32,26 +30,21 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(PRINTF) $(LIBFT)
-	gcc $^ -o $@ $(CFLAGS) $(LIB) $(PRINT)
+$(NAME): $(OBJS) $(LIBFT)
+	gcc $^ -o $@ $(CFLAGS) $(LIB)
 
 $(LIBFT):
 	make -C Libft/
-
-$(PRINTF):
-	make -C Printf_srcs/
 
 %.o: %.c
 	gcc -c $^ -o $@ $(CFLAGS) -I include/
 
 clean:
 	make clean -C Libft/
-	make clean -C Printf_srcs/
 	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C Libft/
-	make fclean -C Printf_srcs/
 	rm -f $(NAME)
 
 re: fclean all
