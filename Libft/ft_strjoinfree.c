@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:54:32 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/28 16:01:41 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:24:20 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*joinfree(char *s1, char *s2, int f)
 {
 	char *ret;
+
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	if (s1 == NULL || s2 == NULL)

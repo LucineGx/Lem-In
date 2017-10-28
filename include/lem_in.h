@@ -6,16 +6,15 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:52:25 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 19:11:52 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:06:07 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM_IN
-# define LEM_IN
+#ifndef LEM_IN_H
+# define LEM_IN_H
 # include <unistd.h>
 # include <stdlib.h>
 # include "../Libft/libft.h"
-# include <stdio.h> //
 
 typedef struct	s_room
 {
@@ -37,8 +36,5 @@ void			remove_last_room(t_room **lst);
 void			get_start(t_room *lst, char **input, int ants);
 void			display_tab(char **tab);
 void			solve_lem_in(t_room *path, int ants_nb);
-//TO DELETE
-void			display_rooms(t_room *lst);
-void			display_path(t_room *lst);
 
 #endif

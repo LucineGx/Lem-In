@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:04:17 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/27 18:59:33 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:23:28 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**add_line_to_tab(char **tab)
 		return (new_tab);
 	}
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 		i++;
 	if (!(new_tab = malloc(sizeof(char*) * (i + 2))))
 		return (NULL);
@@ -61,7 +61,7 @@ void	display_tab(char **tab)
 
 	i = 0;
 	if (!tab)
-		return;
+		return ;
 	while (tab[i])
 	{
 		write(1, tab[i], ft_strlen(tab[i]));

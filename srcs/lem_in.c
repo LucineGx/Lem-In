@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:47:39 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/28 17:30:07 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:04:01 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ int			main(void)
 		write(1, "ERROR\n", 6);
 	free_tab(input);
 	free_lst(rooms);
-	return(0);
+	return (0);
 }

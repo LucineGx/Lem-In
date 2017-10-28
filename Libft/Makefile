@@ -6,7 +6,7 @@
 #    By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/23 18:32:45 by lgaveria          #+#    #+#              #
-#    Updated: 2017/10/28 16:06:54 by lgaveria         ###   ########.fr        #
+#    Updated: 2017/10/28 19:54:06 by lgaveria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ SRCS = ft_atoi.c \
 	   more_to_manage.c \
 	   pars_string.c \
 	   printf.c \
+	   ft_strchr.c \
+	   ft_itoa_write.c \
 
 OBJS = $(SRCS:.c=.o)
 

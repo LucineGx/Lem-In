@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 17:00:24 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/28 18:07:43 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:04:24 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "printf.h"
-# include <stdio.h> //
 
 char	*joinfree(char *s1, char *s2, int f);
 char	*ft_strdup(char *s);
@@ -31,5 +30,8 @@ char	*ft_strsub_free(char *s, int start, int len, int y_free);
 char	**ft_strsplit(char *s, char c);
 int		ft_iswhitespace(char c);
 int		ft_atoi(char *str);
+char	*ft_itoa(int n);
+void	ft_itoa_write(int n);
+char	*ft_strchr(const char *s, int c);
 
 #endif

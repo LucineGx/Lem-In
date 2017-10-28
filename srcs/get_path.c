@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/23 19:34:10 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/28 18:08:24 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 20:05:04 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ t_room		**move(t_room *path, t_room **ants, int n, int ants_nb)
 	return (ants);
 }
 
+void		print_move(int n, char *s)
+{
+	char *tmp;
+
+	write(1, "L", 1);
+	tmp = ft_itoa(n);
+	write(1, tmp, ft_strlen(tmp));
+	write(1, "-", 1);
+	write(1, s, ft_strlen(s));
+	write(1, " ", 1);
+}
+
 void		solve_lem_in(t_room *path, int nb)
 {
 	t_room	**ants;
@@ -45,13 +57,14 @@ void		solve_lem_in(t_room *path, int nb)
 			if ((ants[i])->next != NULL)
 			{
 				ants = move(path, ants, i, nb);
-				printf("L%d-%s ", i + 1, (ants[i])->name);
+				print_move(i + 1, (ants[i])->name);
 				if (!(ft_strcmp((ants[i])->name, (path->next)->name)))
 					i = nb - 1;
 			}
 			i++;
 		}
 	}
+	write(1, "\n", 1);
 	free(ants);
 }
 
@@ -75,6 +88,8 @@ t_room		*get_path(t_room *full, t_room *lst, t_room *path)
 		}
 		lst = lst->next;
 	}
+	if (path->next == NULL)
+		free_lst(path);
 	return (NULL);
 }
 
@@ -93,8 +108,9 @@ void		get_start(t_room *lst, char **input, int ants)
 	{
 		display_tab(input);
 		solve_lem_in(path, ants);
-		free_lst(path);
 	}
 	else
 		write(1, "ERROR\n", 6);
+	if (path)
+		free_lst(path);
 }

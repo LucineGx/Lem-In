@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:29:21 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/22 17:38:30 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 18:24:50 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char		**ft_strsplit(char *s, char c)
 	int		j;
 	int		k;
 
-	if (!s || !(ret  = malloc(sizeof(char*) * (ctwords(s, c) + 1))))
+	if (!s || !(ret = malloc(sizeof(char*) * (ctwords(s, c) + 1))))
 		return (NULL);
 	k = -1;
 	i = 0;

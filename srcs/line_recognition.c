@@ -6,7 +6,7 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 15:57:46 by lgaveria          #+#    #+#             */
-/*   Updated: 2017/10/28 18:08:07 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 19:33:14 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,27 @@ int		is_link_ok(char *s, t_room *lst)
 
 int		is_room_ok(char *s, t_room *lst)
 {
-	char	**cut_string;
+	char	**cut;
 	int		i;
 
-	cut_string = ft_strsplit(s, ' ');
-	if (get_room(lst, cut_string[0]) || !cut_string[1])
-		return (free_tab(cut_string));
+	cut = ft_strsplit(s, ' ');
+	if (get_room(lst, cut[0]) || !cut[1])
+		return (free_tab(cut));
 	i = -1;
-	while (cut_string[1][++i])
-		if (!ft_isdigit(cut_string[1][i]))
-			return (free_tab(cut_string));
+	while (cut[1][++i])
+		if (!(ft_isdigit(cut[1][i]) || (cut[1][i] == '-' && i == 0)))
+			return (free_tab(cut));
 	i = -1;
-	if (!cut_string[2])
-		return (free_tab(cut_string));
-	while (cut_string[2][++i])
-		if (!ft_isdigit(cut_string[2][i]))
-			return (free_tab(cut_string));
-	if (cut_string[3])
-		return (free_tab(cut_string));
-	free_tab(cut_string);
+	if (!cut[2])
+		return (free_tab(cut));
+	while (cut[2][++i])
+		if (!(ft_isdigit(cut[2][i]) || (cut[2][i] == '-' && i == 0)))
+			return (free_tab(cut));
+	if (cut[3])
+		return (free_tab(cut));
+	if (cut[0][0] == 'L' || ft_strchr(cut[0], '-'))
+		return (free_tab(cut));
+	free_tab(cut);
 	return (1);
 }
 
@@ -84,6 +86,8 @@ int		get_line_job(char *s, t_room *lst)
 		return (5);
 	if (!ft_strcmp(s, "##end"))
 		return (6);
+	if (s[0] == '#' && s[1] == '#')
+		return (7);
 	if (s[0] == '#' && s[1] != '#')
 		return (2);
 	if (is_room_ok(s, lst))
@@ -116,7 +120,7 @@ t_room	*manage_input(char **tab, t_room *lst)
 		}
 		if (j == 4)
 			new_link(tab[i], &lst);
-		if (j == 0)
+		if (j == 0 || ants <= 0)
 			return (lst);
 	}
 	return (lst);

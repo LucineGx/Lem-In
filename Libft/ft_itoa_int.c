@@ -6,12 +6,11 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 13:37:58 by lgaveria          #+#    #+#             */
-/*   Updated: 2016/12/09 19:12:56 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/27 15:48:48 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft.h"
+#include "printf.h"
 
 static int	countchar(int n)
 {
@@ -59,15 +58,15 @@ static char	*putinchar(int n, char *ret, int i)
 	return (ret);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa_int(int *n)
 {
 	char	*ret;
 	int		i;
 
-	i = countchar(n);
+	i = countchar(*n);
 	if ((ret = malloc(sizeof(char) * (i + 1))) == NULL)
 		return (NULL);
 	ret[i] = '\0';
-	ret = putinchar(n, ret, i - 1);
+	ret = putinchar(*n, ret, i - 1);
 	return (ret);
 }

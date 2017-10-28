@@ -6,68 +6,34 @@
 /*   By: lgaveria <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 13:37:58 by lgaveria          #+#    #+#             */
-/*   Updated: 2016/12/09 19:12:56 by lgaveria         ###   ########.fr       */
+/*   Updated: 2017/10/28 19:53:31 by lgaveria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-static int	countchar(int n)
+void		ft_itoa_write(int n)
 {
-	int	count;
+	char c;
 
-	if (n == -2147483648)
-		return (11);
-	if (n == 0 || n == -0)
-		return (1);
-	count = 0;
-	if (n < 0)
-	{
-		n = -n;
-		count += 1;
-	}
-	while (n >= 1)
-	{
-		count += 1;
-		n = n / 10;
-	}
-	return (count);
-}
-
-static char	*putinchar(int n, char *ret, int i)
-{
 	if (n == -0)
-		ret[0] = '0';
+		write(1, "0", 1);
 	else if (n < 0)
 	{
-		ret[0] = '-';
+		write(1, "-", 1);
 		if (n == -2147483648)
 		{
-			ret[1] = '2';
-			ret = putinchar(147483648, ret, i);
+			write(1, "2", 1);
+			ft_itoa_write(147483648);
 		}
 		else
-			ret = putinchar(-n, ret, i);
+			ft_itoa_write(-n);
 	}
 	else
 	{
+		c = (n % 10) + 48;
+		write(1, &c, 1);
 		if (n > 9)
-			ret = putinchar(n / 10, ret, i - 1);
-		ret[i] = (n % 10) + 48;
+			ft_itoa_write(n / 10);
 	}
-	return (ret);
-}
-
-char		*ft_itoa(int n)
-{
-	char	*ret;
-	int		i;
-
-	i = countchar(n);
-	if ((ret = malloc(sizeof(char) * (i + 1))) == NULL)
-		return (NULL);
-	ret[i] = '\0';
-	ret = putinchar(n, ret, i - 1);
-	return (ret);
 }
